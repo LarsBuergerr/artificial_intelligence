@@ -1,4 +1,4 @@
-package puzzle8;
+package exercise_1;
 
 import java.util.Arrays;
 import java.util.Comparator;
