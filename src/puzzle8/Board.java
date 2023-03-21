@@ -1,6 +1,7 @@
 package puzzle8;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.LinkedList;
 
@@ -26,6 +27,14 @@ public class Board {
 	 * Generiert ein zufälliges Board.
 	 */
 	public Board() {
+		Integer[] valid_numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+		List<Integer> intList = Arrays.asList(valid_numbers);
+		Collections.shuffle(intList);
+		intList.toArray(valid_numbers);
+
+		for(int i = 0; i < this.board.length; i++) {
+			this.board[i] = valid_numbers[i];
+		}
 	}
 	
 	/**
@@ -33,7 +42,11 @@ public class Board {
 	 * @param board Feld gefüllt mit einer Permutation von 0,1,2, ..., 8.
 	 */
 	public Board(int[] board) {
-		
+		if(board.length - 1 != N) {
+			throw new IllegalArgumentException();
+		}
+
+		this.board = board;
 	}
 
 	@Override
@@ -125,9 +138,11 @@ public class Board {
 	
 	public static void main(String[] args) {
 		Board b = new Board(new int[]{7,2,4,5,0,6,8,3,1});		// abc aus Aufgabenblatt
+		Board random = new Board();
 		Board goal = new Board(new int[]{0,1,2,3,4,5,6,7,8});
 				
 		System.out.println(b);
+		System.out.println(random);
 		System.out.println(b.parity());
 		System.out.println(b.h1());
 		System.out.println(b.h2());

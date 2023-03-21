@@ -1,0 +1,3 @@
+2. a) 
+- Warum ist h1 eine monotone Heuristik?
+  Durch die Zugkosten von 1 kann durch einen Zug immer nur hoechstens ein weiterer Stein auf eine richtige stelle plaziert werden.
