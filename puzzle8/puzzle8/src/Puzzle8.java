@@ -1,4 +1,4 @@
-package exercise_1;
+package puzzle8;
 
 import java.util.Deque;
 
@@ -10,9 +10,7 @@ public class Puzzle8 {
 	
 	public static void main(String[] args) {
 		Board b = new Board(); // Loesbares Puzzle b zufällig genrieren.
-		System.out.println(b.parity());
 		System.out.println(b);
-
 
 		Deque<Board> res = A_Star.aStar(b);
 		int n = res == null ? -1 : res.size();
