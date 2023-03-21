@@ -1,3 +1,15 @@
 2. a) 
 - Warum ist h1 eine monotone Heuristik?
   Durch die Zugkosten von 1 kann durch einen Zug immer nur hoechstens ein weiterer Stein auf eine richtige stelle plaziert werden.
+
+2. b)
+- Warum ist h2 eine monotone Heuristik?
+  Da man pro Zug die insgesamte Distanz nur um hoechstens eine Einheit verringern kann.
+
+2. c)
+- Weiso ist h1 < h2? Welche heuristik ist besser?
+  h1 ist kleiner da sie lediglich aussagt wie viele Steine noch am falschen Platz sind aber nicht wie weit sie vom richtigen Platz entfernt sind.
+  h2 ist als heuristik besser geeignet da sie mehr informationen ueber den aktuellen stand liefert.
+
+
+

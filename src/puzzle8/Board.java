@@ -105,7 +105,15 @@ public class Board {
 	 * @return Heuristikwert.
 	 */
 	public int h1() {
-		return 0; 
+		int wrong_stones = 0;
+
+		for(int i = 1; i <= N; i++) {
+			if(i != this.board[i]) {
+				wrong_stones++;
+			}
+		}
+
+		return wrong_stones; 
 	}
 	
 	/**
@@ -137,7 +145,7 @@ public class Board {
 	
 	
 	public static void main(String[] args) {
-		Board b = new Board(new int[]{7,2,4,5,0,6,8,3,1});		// abc aus Aufgabenblatt
+		Board b = new Board(new int[]{0,2,4,5,1,6,7,3,8});		// abc aus Aufgabenblatt
 		Board random = new Board();
 		Board goal = new Board(new int[]{0,1,2,3,4,5,6,7,8});
 				
