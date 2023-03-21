@@ -75,7 +75,7 @@ public class Board {
 			if (i == 0) {
 				continue;
 			}
-			for (int j = i - 1; j = 0; j--) {
+			for (int j = i - 1; j == 0; j--) {
 				if (board[j] > board[i]) {
 					counter++;
 				}

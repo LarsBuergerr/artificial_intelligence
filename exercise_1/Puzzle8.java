@@ -13,6 +13,7 @@ public class Puzzle8 {
 		System.out.println(b.parity());
 		System.out.println(b);
 
+
 		Deque<Board> res = A_Star.aStar(b);
 		int n = res == null ? -1 : res.size();
 		System.out.println("Anz.Zuege: " + n + ": " + res);
