@@ -69,7 +69,22 @@ public class Board {
 	 * @return Parität.
 	 */
 	public boolean parity() {
-		return true;
+		int counter = 0;
+
+		for (int i = 0; i < N; i++) {
+			if(i == 0) {
+				continue;
+			}
+			for(int j = i - 1; j ==0; j --) {
+				if(board[j] > board[i]) {
+					counter++;
+				}
+			}
+		}
+		if(counter % 2 == 0) {
+			return true;
+		}
+		return false;
 	}
 	
 	/**
