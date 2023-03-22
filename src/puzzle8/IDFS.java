@@ -11,7 +11,9 @@ import java.util.LinkedList;
 public class IDFS {
 
 	private static Deque<Board> dfs(Board curBoard, Deque<Board> path, int limit) {
-		// ...
+		if(limit == 0) {
+			return null;
+		}
 		return null;
 	}
 	

@@ -121,7 +121,16 @@ public class Board {
 	 * @return Heuristikwert.
 	 */
 	public int h2() {
-		return 0;
+		int sum = 0;
+		for(int i = 0; i <= N; i++){
+			int val = this.board[i];
+			if(val ==0){
+				continue;
+			}
+			sum += Math.abs(val%3 - i%3) + Math.abs(val/3 - i/3);
+		}
+		
+		return sum;
 	}
 	
 	/**
@@ -130,7 +139,45 @@ public class Board {
 	 */
 	public List<Board> possibleActions() {
 		List<Board> boardList = new LinkedList<>();
-		// ...
+		int x = 0;
+		int y = 0;
+		int zeroIndex = 0;
+		for(int i = 0;i < N; i++) {
+			if(this.board[i] == 0) {
+				zeroIndex = i;
+				break;
+			}
+		}
+		x = zeroIndex % 3;
+		y = zeroIndex / 3;
+
+		if(x - 1 <= 2 && x -1 >= 0) {
+			int[]tmp_arr = Arrays.copyOf(this.board, this.board.length);
+			Board tmp = new Board(tmp_arr);
+			swap(tmp, zeroIndex, zeroIndex - 1);
+			boardList.add(tmp);
+		}
+ 
+		if(x + 1 <= 2 && x + 1 >= 0) {
+			int[]tmp_arr = Arrays.copyOf(this.board, this.board.length);
+			Board tmp = new Board(tmp_arr);
+			swap(tmp, zeroIndex, zeroIndex + 1);
+			boardList.add(tmp);
+		}
+
+		if(y - 1 <= 2 && y - 1 >= 0) {
+			int[]tmp_arr = Arrays.copyOf(this.board, this.board.length);
+			Board tmp = new Board(tmp_arr);
+			swap(tmp, zeroIndex, zeroIndex - 3);
+			boardList.add(tmp);
+		}
+
+		if(y + 1 <= 2 && y + 1 >= 0) {
+			int[]tmp_arr = Arrays.copyOf(this.board, this.board.length);
+			Board tmp = new Board(tmp_arr);
+			swap(tmp, zeroIndex, zeroIndex + 3);
+			boardList.add(tmp);
+		}
 		return boardList;
 	}
 	
@@ -140,25 +187,37 @@ public class Board {
 	 * @return true, falls Board Ziestzustand (d.h. 0,1,2,3,4,5,6,7,8)
 	 */
 	public boolean isSolved() {
+		for(int i = 0; i < N; i++) {
+			if(this.board[i] != i) {
+				return false;
+			}
+		}
 		return true;
+	}
+
+	public void swap(Board tmp, int x, int y) {
+		int temp = tmp.board[x];
+		tmp.board[x] = tmp.board[y];
+		tmp.board[y] = temp;
 	}
 	
 	
 	public static void main(String[] args) {
-		Board b = new Board(new int[]{0,2,4,5,1,6,7,3,8});		// abc aus Aufgabenblatt
+		Board b = new Board(new int[]{0, 2, 4, 5, 7, 6, 8, 3, 1});		// abc aus Aufgabenblatt
 		Board random = new Board();
 		Board goal = new Board(new int[]{0,1,2,3,4,5,6,7,8});
 				
-		System.out.println(b);
-		System.out.println(random);
-		System.out.println(b.parity());
-		System.out.println(b.h1());
-		System.out.println(b.h2());
+		// System.out.println(b);
+		// System.out.println(random);
+		// System.out.println(b.parity());
+		// System.out.println(b.h1());
+		// System.out.printf("Heuristik 2: %d%n", b.h2());
 		
 		for (Board child : b.possibleActions())
 			System.out.println(child);
+		System.out.println(b);
 		
-		System.out.println(goal.isSolved());
+		// System.out.println(goal.isSolved());
 	}
 }
 	
