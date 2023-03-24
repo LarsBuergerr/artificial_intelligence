@@ -84,20 +84,18 @@ public class Board {
 	public boolean parity() {
 		int counter = 0;
 
-		for (int i = 0; i < N; i++) {
-			if(i == 0) {
+		for (int i = 0; i <= N; i++) {
+			if(board[i] == 0) {
 				continue;
 			}
-			for(int j = i - 1; j ==0; j --) {
+			// for(int j = i - 1; j >= 0; j --) wäre auch gegangen
+			for(int j = 0; j < i; j++) {
 				if(board[j] > board[i]) {
 					counter++;
 				}
 			}
 		}
-		if(counter % 2 == 0) {
-			return true;
-		}
-		return false;
+		return counter % 2 == 0;
 	}
 	
 	/**
@@ -203,15 +201,15 @@ public class Board {
 	
 	
 	public static void main(String[] args) {
-		Board b = new Board(new int[]{0, 2, 4, 5, 7, 6, 8, 3, 1});		// abc aus Aufgabenblatt
+		Board b = new Board(new int[]{7, 2, 4, 5, 0, 6, 8, 3, 1});		// abc aus Aufgabenblatt
 		Board random = new Board();
 		Board goal = new Board(new int[]{0,1,2,3,4,5,6,7,8});
 				
-		// System.out.println(b);
-		// System.out.println(random);
-		// System.out.println(b.parity());
-		// System.out.println(b.h1());
-		// System.out.printf("Heuristik 2: %d%n", b.h2());
+		 System.out.println(b);
+		 // System.out.println(random);
+		 System.out.printf("Parität: %b\n", b.parity());
+		 System.out.printf("Heuristik 1: %d\n", b.h1());
+		 System.out.printf("Heuristik 2: %d\n", b.h2());
 		
 		for (Board child : b.possibleActions())
 			System.out.println(child);
