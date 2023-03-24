@@ -120,12 +120,12 @@ public class Board {
 	 */
 	public int h2() {
 		int sum = 0;
-		for(int i = 0; i <= N; i++){
-			int val = this.board[i];
+		for(int position = 0; position <= N; position++){
+			int val = this.board[position];
 			if(val ==0){
 				continue;
 			}
-			sum += Math.abs(val%3 - i%3) + Math.abs(val/3 - i/3);
+			sum += Math.abs(val%3 - position%3) + Math.abs(val/3 - position/3);
 		}
 		
 		return sum;
@@ -137,48 +137,45 @@ public class Board {
 	 */
 	public List<Board> possibleActions() {
 		List<Board> boardList = new LinkedList<>();
-		int x = 0;
-		int y = 0;
 		int zeroIndex = 0;
-		for(int i = 0;i < N; i++) {
+		for(int i = 0;i <= N; i++) {
 			if(this.board[i] == 0) {
 				zeroIndex = i;
 				break;
 			}
 		}
-		x = zeroIndex % 3;
-		y = zeroIndex / 3;
+		int row_index = zeroIndex % 3;
+		int column_index = zeroIndex / 3;
 
-		if(x - 1 <= 2 && x -1 >= 0) {
-			int[]tmp_arr = Arrays.copyOf(this.board, this.board.length);
-			Board tmp = new Board(tmp_arr);
-			swap(tmp, zeroIndex, zeroIndex - 1);
-			boardList.add(tmp);
+		if(check_index(row_index - 1)) {
+			boardList.add(generate_next_board(zeroIndex, zeroIndex - 1));
 		}
  
-		if(x + 1 <= 2 && x + 1 >= 0) {
-			int[]tmp_arr = Arrays.copyOf(this.board, this.board.length);
-			Board tmp = new Board(tmp_arr);
-			swap(tmp, zeroIndex, zeroIndex + 1);
-			boardList.add(tmp);
+		if(check_index(row_index + 1)) {
+			boardList.add(generate_next_board(zeroIndex, zeroIndex + 1));
 		}
 
-		if(y - 1 <= 2 && y - 1 >= 0) {
-			int[]tmp_arr = Arrays.copyOf(this.board, this.board.length);
-			Board tmp = new Board(tmp_arr);
-			swap(tmp, zeroIndex, zeroIndex - 3);
-			boardList.add(tmp);
+		if(check_index(column_index - 1)) {
+			boardList.add(generate_next_board(zeroIndex, zeroIndex - 3));
 		}
 
-		if(y + 1 <= 2 && y + 1 >= 0) {
-			int[]tmp_arr = Arrays.copyOf(this.board, this.board.length);
-			Board tmp = new Board(tmp_arr);
-			swap(tmp, zeroIndex, zeroIndex + 3);
-			boardList.add(tmp);
+		if(check_index(column_index + 1)) {
+			boardList.add(generate_next_board(zeroIndex, zeroIndex + 3));
 		}
 		return boardList;
 	}
-	
+
+	public boolean check_index(int index){
+		return index >= 0 && index < 3;
+	}
+
+	public Board generate_next_board(int x, int y) {
+		int[] tmp_board = this.board.clone();
+		int tmp = tmp_board[x];
+		tmp_board[x] = tmp_board[y];
+		tmp_board[y] = tmp;
+		return new Board(tmp_board);
+	}
 	
 	/**
 	 * Prüft, ob das Board ein Zielzustand ist.
@@ -192,13 +189,6 @@ public class Board {
 		}
 		return true;
 	}
-
-	public void swap(Board tmp, int x, int y) {
-		int temp = tmp.board[x];
-		tmp.board[x] = tmp.board[y];
-		tmp.board[y] = temp;
-	}
-	
 	
 	public static void main(String[] args) {
 		Board b = new Board(new int[]{7, 2, 4, 5, 0, 6, 8, 3, 1});		// abc aus Aufgabenblatt
