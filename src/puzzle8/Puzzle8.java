@@ -13,12 +13,12 @@ public class Puzzle8 {
 		System.out.println(b);
 		while (!b.parity()) b = new Board();
 
-//		Deque<Board> res = A_Star.aStar(b);
-//		int n = res == null ? -1 : res.size();
-//		System.out.println("Anz.Zuege: " + n + ": " + res);
-
-		Deque<Board> res = IDFS.idfs(b);
+		Deque<Board> res = A_Star.aStar(b);
 		int n = res == null ? -1 : res.size();
 		System.out.println("Anz.Zuege: " + n + ": " + res);
+
+		// Deque<Board> res = IDFS.idfs(b);
+		// int n = res == null ? -1 : res.size();
+		// System.out.println("Anz.Zuege: " + n + ": " + res);
 	}
 }

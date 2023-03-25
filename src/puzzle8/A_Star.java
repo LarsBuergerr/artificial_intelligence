@@ -19,13 +19,53 @@ public class A_Star {
 	// openList als Prioritätsliste.
 	// Die Prioritätswerte sind die geschätzen Kosten f = g + h (s. Skript S. 2-66)
 	private static IndexMinPQ<Board, Integer> openList = new IndexMinPQ<>();
+	private static Deque<Board> closedList = new LinkedList<>();
+
 	
 	public static Deque<Board> aStar(Board startBoard) {
-		if (startBoard.isSolved())
+		if (startBoard.isSolved()) {
+			System.out.println("Startknoten ist Zielknoten!");
 			return new LinkedList<>();
+		}
 		
-		// ...
-		
-		return null; // Keine Lösung
+		closedList.add(startBoard);
+		cost.put(startBoard, 0);
+		pred.put(startBoard, null);
+
+		for(Board child : startBoard.possibleActions()) {
+			cost.put(child, 1);
+			pred.put(child, startBoard);
+			openList.add(child, 1 + child.h2());
+
+		}
+		while(!openList.isEmpty()) {
+			Board curBoard = openList.removeMin();
+			if (curBoard.isSolved()){
+				Deque<Board> res = new LinkedList<>();
+				res.add(curBoard);
+
+				for(Board parent = pred.get(curBoard); parent != null; parent = pred.get(parent)) {
+					res.addFirst(parent);
+				}
+				return res;
+			}
+			closedList.add(curBoard);
+			
+			for(Board child : curBoard.possibleActions()) {
+				int costs = 1 + cost.get(curBoard);
+				if (openList.get(child) == null && !closedList.contains(child)) {
+					cost.put(child, costs);
+					pred.put(child, curBoard);
+					openList.add(child, costs + child.h2());
+				} else if (openList.get(child) != null) {
+					if (costs < cost.get(child)) {
+						openList.change(child, costs + child.h2());
+						cost.put(child, costs);
+						pred.put(child, curBoard);
+					}
+				}
+			}
+		}
+		return null;
 	}
 }
