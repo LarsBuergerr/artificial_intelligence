@@ -68,4 +68,8 @@ public class A_Star {
 		}
 		return null;
 	}
+
+	public static int getSize() {
+		return cost.size();
+	}
 }
