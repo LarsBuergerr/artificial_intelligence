@@ -45,7 +45,13 @@ c)
   Anz.Zuege: 26985213
 
 d)
- - Ja denn A* liefert bei monotonen Heuristiken immer den optimalen weg ???
+ - Kommt vermutlich auf die heuristik an welche man verwendet.
+ - Bei der Heuristik 1 ist es sehr warscheinlich das zwei moegliche naechste Zuege den selben heuristischen 
+   Wert haben da man lediglich prueft ob durch den Zug ein weiterer Stein am richtigen Platz sitzt und es ist
+   somit moeglich das man von zwei Zuegen die somit den selben Wert besitzen den schlechteren / nicht optimalen Zug nimmt.
+
+ - Bei der zweiten Heuristik ist es wahrscheinlicher einen komplett optimalen Pfad zu laufen da die Heuristik genauer ist?
+
 
 e)
  - Es könnte zu Speicherproblemen kommen da der IDFS durch die Rekursion riesige Heaps aufbaut.
