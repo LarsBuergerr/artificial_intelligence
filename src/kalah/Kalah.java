@@ -15,7 +15,8 @@ public class Kalah {
 	 */
 	public static void main(String[] args) {
 		//testExample();
-		testHHGame();
+		//testHHGame();
+		testBestAction();
 	}
 	
 	/**
@@ -48,5 +49,15 @@ public class Kalah {
 		}
 
 		System.out.println("\n" + ANSI_BLUE + "GAME OVER");
+	}
+
+	public static void testBestAction() {
+		KalahBoard kalahBd = new KalahBoard(new int[]{5,3,2,1,2,0,0,4,3,0,1,2,2,0}, 'B');
+		kalahBd.print();
+		
+		for (int i = 0; i < 10; i++) {
+			KalahBoard bestBd = kalahBd.miniMax(i, kalahBd, false);
+			bestBd.print();
+		}
 	}
 }

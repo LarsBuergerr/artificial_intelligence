@@ -214,7 +214,7 @@ public class KalahBoard {
 	public int getBKalah() {
 		return board[BKalah];
 	}
-	
+
 	
 	/**
 	 * Liefert eine Liste der möglichen Aktionen als Liste von Folge-Boards zurück.
@@ -236,63 +236,39 @@ public class KalahBoard {
 		}		
 		return actionList;
 	}
-	
-	// public KalahBoard getBestAction() {
-	// 	HashMap <KalahBoard, Integer> costMap = new HashMap<>();
-	// 	HashMap <KalahBoard, KalahBoard> predMap = new HashMap<>();
 
-	// 	List<KalahBoard> actionList = possibleActions();
-	// 	if (actionList.isEmpty()) {
-	// 		return null;
-	// 	}
-	// 	for (KalahBoard action : actionList) {
-	// 		if (action.getCurPlayer() == 'A') {
-	// 			costMap.put(action, action.getAKalah());
-	// 		} else {
-	// 			costMap.put(action, action.getBKalah());
-	// 		}
-	// 		predMap.put(action, null);
-	// 	}
-	// 	while (!actionList.isEmpty()) {
-	// 		for (var action : actionList) {
-	// 			//remove action from actionList
-	// 			actionList.remove(action);
 
-	// 			//get all possible actions from action
-	// 			if(action.bonus) {
-	// 				actionList+=(action.possibleActions());
-	// 			}
-	// 		}
-	// 	}
-	// }
-
-	public KalahBoard getBestAction() {
-		KalahBoard currBestBoard = null;
-		int currBestScore = 0;
-		List<KalahBoard> actionList = possibleActions();
-		if (actionList.isEmpty()) {
-			return null;
+	public KalahBoard miniMax(int depth, KalahBoard state, boolean maximize) {
+		if (depth == 0 || state.finish()) {
+			return state;
 		}
-		for (KalahBoard action : actionList) {
-			int score = 0;
-			if (action.getCurPlayer() == 'A') {
-				score = action.getAKalah() - action.getBKalah() + (action.bonus ? 2 : 0);
-				if (score > currBestScore) {
-					currBestScore = score;
-					currBestBoard = action;
-				}
-			} else {
-				score = action.getBKalah() - action.getAKalah() + (action.bonus ? 2 : 0);
-				if (score > currBestScore) {
-					currBestScore = score;
-					currBestBoard = action;
+		if (maximize) {
+			KalahBoard bestBoard = new KalahBoard(state);
+
+			for (KalahBoard action : state.possibleActions()) {
+				KalahBoard result = miniMax(depth - 1, action, false);
+				if (result.getScore() > bestBoard.getScore()) {
+					bestBoard = action;
 				}
 			}
+			return bestBoard;
+		} else {
+			KalahBoard bestBoard = new KalahBoard(state);
+
+			for (KalahBoard action : state.possibleActions()) {
+				KalahBoard result = miniMax(depth - 1, action, true);
+				if (result.getScore() < bestBoard.getScore()) {
+					bestBoard = action;
+				}
+			}
+			return bestBoard;
 		}
-		return currBestBoard;
-		//sort costMap depending on score
-		//get actionMap entry with highest int value
 	}
+
+	private int getScore() {
+		return getAKalah() - getBKalah();
+	}
+
 
 
 	/**
