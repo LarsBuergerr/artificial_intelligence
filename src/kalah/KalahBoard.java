@@ -1,7 +1,12 @@
 package kalah;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -232,6 +237,64 @@ public class KalahBoard {
 		return actionList;
 	}
 	
+	// public KalahBoard getBestAction() {
+	// 	HashMap <KalahBoard, Integer> costMap = new HashMap<>();
+	// 	HashMap <KalahBoard, KalahBoard> predMap = new HashMap<>();
+
+	// 	List<KalahBoard> actionList = possibleActions();
+	// 	if (actionList.isEmpty()) {
+	// 		return null;
+	// 	}
+	// 	for (KalahBoard action : actionList) {
+	// 		if (action.getCurPlayer() == 'A') {
+	// 			costMap.put(action, action.getAKalah());
+	// 		} else {
+	// 			costMap.put(action, action.getBKalah());
+	// 		}
+	// 		predMap.put(action, null);
+	// 	}
+	// 	while (!actionList.isEmpty()) {
+	// 		for (var action : actionList) {
+	// 			//remove action from actionList
+	// 			actionList.remove(action);
+
+	// 			//get all possible actions from action
+	// 			if(action.bonus) {
+	// 				actionList+=(action.possibleActions());
+	// 			}
+	// 		}
+	// 	}
+	// }
+
+	public KalahBoard getBestAction() {
+		KalahBoard currBestBoard = null;
+		int currBestScore = 0;
+		List<KalahBoard> actionList = possibleActions();
+		if (actionList.isEmpty()) {
+			return null;
+		}
+		for (KalahBoard action : actionList) {
+			int score = 0;
+			if (action.getCurPlayer() == 'A') {
+				score = action.getAKalah() - action.getBKalah() + (action.bonus ? 2 : 0);
+				if (score > currBestScore) {
+					currBestScore = score;
+					currBestBoard = action;
+				}
+			} else {
+				score = action.getBKalah() - action.getAKalah() + (action.bonus ? 2 : 0);
+				if (score > currBestScore) {
+					currBestScore = score;
+					currBestBoard = action;
+				}
+			}
+		}
+		return currBestBoard;
+		//sort costMap depending on score
+		//get actionMap entry with highest int value
+	}
+
+
 	/**
 	 * Spielt Mulde.
 	 * @param mulde Mulde, die gespielt wird.
