@@ -231,7 +231,7 @@ public class KalahBoard {
 			if (board[i] != 0) {
 				KalahBoard next = new KalahBoard(this);
 				next.move(i);
-				actionList.add(next);	
+				actionList.add(next);
 			}
 		}		
 		return actionList;
@@ -424,6 +424,12 @@ public class KalahBoard {
 	 */
 	public int readAction() {
 		System.out.print(ANSI_BLUE + curPlayer + " spielt Mulde: ");
+
+		if (curPlayer == APlayer) {
+			int best_move_for_a = MiniMax.MaxAction(this, 6);
+			System.out.printf("\nMiniMax spielt Mulde %d \n", best_move_for_a);
+			return best_move_for_a;
+		}
 
 		while (in.hasNextLine()) {
 			String line = in.nextLine();
