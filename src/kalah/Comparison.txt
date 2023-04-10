@@ -1,0 +1,57 @@
+
+
+Depths 6:
+Heuristic hat 4485 Zustände betrachtet
+
+Heuristic hätte Mulde 0 gespielt
+
+AlphaBeta hat 8244 Zustände betrachtet
+
+AlphaBeta hätte Mulde 0 gespielt
+
+MiniMax hat 98722 Zustände betrachtet
+
+MiniMax spielt Mulde 0
+
+
+Depth 8:
+
+Heuristic hat 89970 Zustände betrachtet
+
+Heuristic hätte Mulde 0 gespielt
+
+AlphaBeta hat 187856 Zustände betrachtet
+
+AlphaBeta hätte Mulde 0 gespielt
+
+MiniMax hat 5273554 Zustände betrachtet
+
+MiniMax spielt Mulde 0
+
+
+Depth 10:
+
+Heuristic hat 1184259 Zustände betrachtet
+
+Heuristic hätte Mulde 0 gespielt
+
+AlphaBeta hat 2054067 Zustände betrachtet
+
+AlphaBeta hätte Mulde 0 gespielt
+
+MiniMax hat 526290507 Zustände betrachtet
+
+MiniMax spielt Mulde 0
+
+
+Depth 12:
+
+Heuristic hat 19285855 Zustände betrachtet
+
+Heuristic hätte Mulde 0 gespielt
+
+AlphaBeta hat 32120194 Zustände betrachtet
+
+AlphaBeta hätte Mulde 0 gespielt
+
+Lief ne halbe stunde MiniMax wurde nicht fertig
