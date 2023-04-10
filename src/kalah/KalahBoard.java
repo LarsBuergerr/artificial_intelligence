@@ -403,6 +403,8 @@ public class KalahBoard {
 
 		if (curPlayer == APlayer) {
 			int best_move_for_a = MiniMax.MaxAction(this, 6);
+			int tmp = AlphaBeta.MaxAction(this, 6);
+			System.out.printf("\nAlphaBeta hätte Mulde %d gespielt\n", best_move_for_a);
 			System.out.printf("\nMiniMax spielt Mulde %d \n", best_move_for_a);
 			return best_move_for_a;
 		}
