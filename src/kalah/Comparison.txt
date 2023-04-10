@@ -54,4 +54,6 @@ AlphaBeta hat 32120194 Zustände betrachtet
 
 AlphaBeta hätte Mulde 0 gespielt
 
-Lief ne halbe stunde MiniMax wurde nicht fertig
+MiniMax hat 372468968 Zustände betrachtet
+
+MiniMax spielt Mulde 0
