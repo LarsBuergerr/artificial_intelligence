@@ -402,9 +402,12 @@ public class KalahBoard {
 		System.out.print(ANSI_BLUE + curPlayer + " spielt Mulde: ");
 
 		if (curPlayer == APlayer) {
-			int best_move_for_a = MiniMax.MaxAction(this, 6);
-			int tmp = AlphaBeta.MaxAction(this, 6);
-			System.out.printf("\nAlphaBeta hätte Mulde %d gespielt\n", best_move_for_a);
+
+			int heur = Heuristic.MaxAction(this, 12);
+			System.out.printf("\nHeuristic hätte Mulde %d gespielt\n", heur);
+			int ab = AlphaBeta.MaxAction(this, 12);
+			System.out.printf("\nAlphaBeta hätte Mulde %d gespielt\n", ab);
+			int best_move_for_a = MiniMax.MaxAction(this, 12);
 			System.out.printf("\nMiniMax spielt Mulde %d \n", best_move_for_a);
 			return best_move_for_a;
 		}
