@@ -15,8 +15,8 @@ public class Kalah {
 	 */
 	public static void main(String[] args) {
 		//testExample();
-		//testHHGame();
-		testBestAction();
+		testHHGame();
+		//testBestAction();
 	}
 	
 	/**

@@ -2,6 +2,8 @@ package kalah;
 
 public class MiniMax {
 
+    public static int count = 0;
+
     public static int MaxAction(KalahBoard current_state, int depth){
         if (current_state.isFinished()){
             return current_state.getAKalah() - current_state.getBKalah();
@@ -11,6 +13,7 @@ public class MiniMax {
         KalahBoard best_action = null;
 
         for (var action: current_state.possibleActions()){
+            count++;
             int v1;
             if (action.isBonus()){
                 v1 = Integer.max(v, MaxValue(action, depth)); // since it is technically the same move we don't decrement the depth here
@@ -23,6 +26,7 @@ public class MiniMax {
                 best_action = action;
             }
         }
+        System.out.printf("\nMiniMax hat %d Zustände betrachtet\n", count);
         return best_action.getLastPlay();
     }
 
@@ -34,6 +38,7 @@ public class MiniMax {
         int v = Integer.MAX_VALUE;
 
         for (var action: current_state.possibleActions()){
+            count++;
             if (action.isBonus()){
                 v = Integer.min(v, MinValue(action, depth)); // since it is technically the same move we don't decrement the depth here
             }else{
@@ -51,6 +56,7 @@ public class MiniMax {
         int v = Integer.MIN_VALUE;
 
         for (var action: current_state.possibleActions()){
+            count++;
             if (action.isBonus()){
                 v = Integer.max(v, MaxValue(action, depth)); // since it is technically the same move we don't decrement the depth here
             }else{
