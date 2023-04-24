@@ -52,7 +52,8 @@ def solve(rectangles):
 
     for sol in solutions:
         big_rectangle = [[" " for _ in range(big_rectangle_width)] for _ in range(big_rectangle_height)]
-        vals = [(" 1 ", Fore.RED), (" 2 ", Fore.GREEN), (" 3 ", Fore.YELLOW), (" 4 ", Fore.BLUE), (" 5 ", Fore.CYAN), (" 6 ", Fore.BLACK)]
+        vals = [(" 1 ", Fore.RED), (" 2 ", Fore.GREEN), (" 3 ", Fore.YELLOW), (" 4 ", Fore.BLUE), (" 5 ", Fore.CYAN),
+                (" 6 ", Fore.BLACK)]
         colors = []
 
         for i, rect in enumerate(rectangles):
@@ -72,7 +73,6 @@ def solve(rectangles):
                 print(cell[1] + cell[0], end=" ")
             print()
         print()
-
 
 
 def check_bounds(x, y, o, rect: Rectangle):
