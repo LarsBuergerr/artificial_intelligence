@@ -46,15 +46,6 @@ def solve(rectangles):
         print("No solution found.")
         return
 
-    # print("Solutions: {}".format(len(solutions)))
-    #
-    # for i, currRect in enumerate(rectangles):
-    #     orientation = "horizontal" if solutions[0][f"o_{i}"] == 0 else "vertical"
-    #     print(f"Rectangle {i}: {currRect},"
-    #           f"Position: ({solutions[0][f'x_{i}']},"
-    #           f"{solutions[0][f'y_{i}']}),"
-    #           f"Orientation: {orientation}")
-
     if len(solutions) == 0:
         print("No solution found.")
         return
