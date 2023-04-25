@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from colorama import Fore, Back, Style
+from colorama import Fore
 import constraint
 
 big_rectangle_width = 7
@@ -54,7 +54,6 @@ def solve(rectangles):
         big_rectangle = [[" " for _ in range(big_rectangle_width)] for _ in range(big_rectangle_height)]
         vals = [(" 1 ", Fore.RED), (" 2 ", Fore.GREEN), (" 3 ", Fore.YELLOW), (" 4 ", Fore.BLUE), (" 5 ", Fore.CYAN),
                 (" 6 ", Fore.BLACK)]
-        colors = []
 
         for i, rect in enumerate(rectangles):
             x = sol[f"x_{i}"]
