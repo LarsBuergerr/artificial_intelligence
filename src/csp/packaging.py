@@ -46,10 +46,6 @@ def solve(rectangles):
         print("No solution found.")
         return
 
-    if len(solutions) == 0:
-        print("No solution found.")
-        return
-
     for sol in solutions:
         big_rectangle = [[" " for _ in range(big_rectangle_width)] for _ in range(big_rectangle_height)]
         vals = [(" 1 ", Fore.RED), (" 2 ", Fore.GREEN), (" 3 ", Fore.YELLOW), (" 4 ", Fore.BLUE), (" 5 ", Fore.CYAN),
@@ -72,6 +68,8 @@ def solve(rectangles):
                 print(cell[1] + cell[0], end=" ")
             print()
         print()
+
+    print("Anzahl Lösungen: {}".format(len(solutions)))
 
 
 def check_bounds(x, y, o, rect: Rectangle):
